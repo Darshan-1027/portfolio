@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darshan - Portfolio</title>
+    <link href="{% static 'css/home.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav>
+      <div class="logo">
+        PortFolio
+      </div>  
+      <div class="menu">
+        <a href="" title="Home">Home</a>
+        <a href="#2" title="About Me">About</a>
+        <a href="#3" title="Skills">Skills</a>
+        <a href="#4" title="Projects">Projects</a>
+        <a href="#5" title="Contact Me">Contact</a>
+      </div>
+    </nav>
+    <div class="profile">
+        <div class="photo">
+            
+            <img src="{{ Image.Profile_Image.url }}" alt="Darshan Photo">
+
+        </div>
+        <div class="data">
+            <span>Hi,i'm</span>
+            <h1>{{ Details.First_name }} {{ Details.Last_name }}</h1>
+            <h2>{{ Details.Passion }}</h2>
+            <br>
+            <a href="{{ Resume.resume.url }}" target="_blank"> Resume <i class="fa-solid fa-cloud-arrow-down"></i></a> <a href="#5">Hire me <i class="fa-solid fa-face-smile"></i></a>
+            
+         <div class="link">
+        <a href="https://github.com/darshan-1027" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/darshan-prajapati-710571373" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:darshanpr0004@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/919313660165" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    
+            
+        </div>
+
+    </div>
+<br>
+<br>
+<br>
+    <div class="About" id="2">
+      <h1>🧑‍💻 About Me </h1>
+      <br>
+      <hr>
+    </div>
+  
+    <div class="about">
+      <div class="data">
+        <p>👋 Hey! I’m Darshan Prajapati, a curious and passionate guy who has just completed my BCA (Bachelor of Computer Applications).
+<br><br>
+💻 I really enjoy building websites and working on tech projects! I’ve created many real-world web apps using HTML, CSS, JavaScript, and Django (Python). I love turning ideas into clean, working websites that people enjoy using.
+<br><br>
+📊 I also enjoy playing with data — using tools like Excel, Power BI, Pandas, and Matplotlib to turn boring data into cool charts and helpful insights.
+<br><br>
+🛠️ I keep learning new things all the time — like automating small tasks, improving my code, and exploring smart ways to solve problems.
+<br><br>
+🚀 I’m now looking for internships or projects where I can grow, work with others, and learn even more about web development and data analysis.
+<br><br>
+🤝 If you have an idea or a project — let’s build something great together!
+        </p>
+      </div>
+      <div class="image">
+        <img src="{% static 'images/-1.webp' %}" alt="Photo">
+      </div>
+    </div>
+    <div class="Skill" id="3">
+      <h1>📊 Tools & Technologies</h1>
+      <br>
+      <hr>
+    </div>
+    <div class="skills">
+      {% if skills %}
+      {% for i in skills %}
+      <div class="card">
+        <img src="{{ i.logo.url }}" title="{{ i.title }}" alt="{{ i.title }}">
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+<br>
+<br>
+<br>
+    <div class="Projects" id="4">
+      <h1>💼 My Projects</h1>
+      <br>
+      <hr>
+    </div>
+  {% if filters %}
+  <div class="filter">
+    <a href="" data-filter="all">All</a>
+    {% for i in filters %}
+      <a href="" data-filter="{{ i.Name|lower|slugify }}">{{ i.Name }}</a>     
+    {% endfor %}
+  </div>
+{% endif %}
+   {% if projects %}
+  <div class="projects">
+    {% for i in projects %}
+      
+        <div class="card2" data-type="{{ i.Type|lower|slugify }}">
+          <img src="{{ i.Images.url }}" alt="Project Image">
+          <div class="details">
+            <h1>{{ i.title }}</h1>
+            <div class="view">
+              <a href=""><i class="fa-regular fa-thumbs-up"></i></a>
+              <a href=""><i class="fa-solid fa-comment-dots"></i></a>
+              <a href="{{ i.live_link }}" id="live" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Live Website
+              </a>
+            </div>
+            <h3> ~ {{i.Type}}</h3>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+{% endif %}
+ <div class="Contact" id="5">
+      <h1>💌 Drop Me a Message </h1>
+      <br>
+      <p>I’d love to hear from you — whether it’s about work, ideas, or feedback!</p>
+
+      <br>
+      <hr>
+    </div>
+  <div class="contact">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button value="sumit">📩 Drop a Message</button>
+    </form>
+  </div>
+
+  <footer class="styled-footer">
+  <div class="footer-container">
+    <h2>Darshan Prajapati 👨‍💻</h2>
+    <p>Crafting clean code, building real-world projects & turning data into stories 📊</p>
+
+    <div class="footer-socials">
+      <a href="https://github.com/darshan-1027" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/darshan-prajapati-710571373" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:darshanpr0004@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/919313660165" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Made with ❤️ by Darshan • © 2025</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore virtual environment
+env/
+venv/
+
+# Ignore Django DB
+*.sqlite3
+
+# Ignore media uploads
+media/
+
+# Ignore secrets
+*.env
+
+# Ignore static files (optional if using collectstatic)
+staticfiles/
+
+# Ignore VS Code settings
+.vscode/
