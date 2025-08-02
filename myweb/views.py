@@ -42,3 +42,14 @@ def home(request):
         
 
     return render(request,"home.html",{ "Image":Profile , "Details" :Details , "Resume":Resume ,"skills":Skills,"filters":Filters,"projects":projects,'form': form})
+
+
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def create_admin(request):
+    if not User.objects.filter(username="darshan").exists():
+        User.objects.create_superuser("darshan", "darshan@email.com", "mypassword123")
+        return HttpResponse("Admin created!")
+    return HttpResponse("Admin already exists.")
+
