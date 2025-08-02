@@ -78,7 +78,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='your_render_postgresql_url_here',
+        default='postgresql://portfolio_db_loyk_user:bO1ZGjORfs7Qm6YrFpqfX3Pl1xYIOqMs@dpg-d26ltb63jp1c73d650t0-a/portfolio_db_loyk',
         conn_max_age=600,
         ssl_require=True
     )
